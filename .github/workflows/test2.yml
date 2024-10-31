@@ -1,0 +1,16 @@
+name: Print_info #실습4 워크플로우가 여러개 있을수있다
+on: [push, workflow_dispatch]
+jobs:
+  cond:
+     runs-on: ubuntu-latest
+     steps:
+      - name: Conditional
+        #깃허브에서 제공하는 형식 기능정의
+        if: ${{github.event_name == 'push' }} 
+        run: echo "This runs on push events only."
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Github context
+        #레포에대한 정보를 출력하는것(이름)
+        run: echo "${{ github.repository }}"
